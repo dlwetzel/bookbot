@@ -11,19 +11,40 @@ def main():
     def count_words():
         file_contents_str = read_file()
         words = file_contents_str.split()
-        print(len(words))
+        return len(words)
+    
+    def sort_on(d):
+        return d["num"]
         
     def count_characters():
         chars = {}
+        chars_list = []
         file_contents_str = read_file()
         for char in file_contents_str:
             char = char.lower()
-            if char in chars:
+            if char in chars and char.isalpha():
                 chars[char] += 1
-            else:
+            elif char.isalpha():
                 chars[char] = 1
-        print(chars)
+        for char in chars:
+            chars_list.append({"char": char, "num": chars[char]})
+        chars_list.sort(reverse=True, key=sort_on)
+        return chars_list
+        
+
+    def print_report():
+        num_words = count_words()
+        chars_dict_list = count_characters()
+        
+        
+        print(f"--- Begin report of {frankenstein_path} ---")
+        for item in chars_dict_list:
+            print(f"The '{item["char"]}' character was found {item['num']} times")
+        print("--- End report ---")
+            
+        
+        
     
-    count_characters()
+    print_report()
     
 main()
