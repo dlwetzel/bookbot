@@ -12,7 +12,18 @@ def main():
         file_contents_str = read_file()
         words = file_contents_str.split()
         print(len(words))
+        
+    def count_characters():
+        chars = {}
+        file_contents_str = read_file()
+        for char in file_contents_str:
+            char = char.lower()
+            if char in chars:
+                chars[char] += 1
+            else:
+                chars[char] = 1
+        print(chars)
     
-    count_words()
+    count_characters()
     
 main()
